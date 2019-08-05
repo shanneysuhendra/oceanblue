@@ -7,8 +7,8 @@ import {
 
 import TabBarIcon from "../components/TabBarIcon";
 import HomeScreen from "../screens/HomeScreen";
-import LinksScreen from "../screens/LinksScreen";
-import SettingsScreen from "../screens/SettingsScreen";
+import ActionScreen from "../screens/ActionScreen";
+import ShopScreen from "../screens/ShopScreen";
 
 const config = Platform.select({
   web: { headerMode: "screen" },
@@ -34,14 +34,14 @@ HomeStack.navigationOptions = {
 
 HomeStack.path = "";
 
-const LinksStack = createStackNavigator(
+const ActionStack = createStackNavigator(
   {
-    Links: LinksScreen
+    Action: ActionScreen
   },
   config
 );
 
-LinksStack.navigationOptions = {
+ActionStack.navigationOptions = {
   tabBarLabel: "Action",
   tabBarIcon: ({ focused }) => (
     <TabBarIcon
@@ -51,16 +51,16 @@ LinksStack.navigationOptions = {
   )
 };
 
-LinksStack.path = "";
+ActionStack.path = "";
 
-const SettingsStack = createStackNavigator(
+const ShopStack = createStackNavigator(
   {
-    Settings: SettingsScreen
+    Shop: ShopScreen
   },
   config
 );
 
-SettingsStack.navigationOptions = {
+ShopStack.navigationOptions = {
   tabBarLabel: "Shop",
   tabBarIcon: ({ focused }) => (
     <TabBarIcon
@@ -70,12 +70,12 @@ SettingsStack.navigationOptions = {
   )
 };
 
-SettingsStack.path = "";
+ShopStack.path = "";
 
 const tabNavigator = createBottomTabNavigator({
   HomeStack,
-  LinksStack,
-  SettingsStack
+  ActionStack,
+  ShopStack
 });
 
 tabNavigator.path = "";
