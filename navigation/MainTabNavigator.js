@@ -9,6 +9,7 @@ import TabBarIcon from "../components/TabBarIcon";
 import HomeScreen from "../screens/HomeScreen";
 import ActionScreen from "../screens/ActionScreen";
 import ShopScreen from "../screens/ShopScreen";
+import StatsScreen from "../screens/StatsScreen";
 
 const config = Platform.select({
   web: { headerMode: "screen" },
@@ -53,6 +54,23 @@ ActionStack.navigationOptions = {
 
 ActionStack.path = "";
 
+const StatsStack = createStackNavigator(
+  {
+    Stats: StatsScreen
+  },
+  config
+);
+
+StatsStack.navigationOptions = {
+  tabBarLabel: "Stats",
+  tabBarIcon: ({ focused }) => (
+    <TabBarIcon
+      focused={focused}
+      name={Platform.OS === "ios" ? "ios-stats" : "md-stats"}
+    />
+  )
+};
+
 const ShopStack = createStackNavigator(
   {
     Shop: ShopScreen
@@ -70,11 +88,12 @@ ShopStack.navigationOptions = {
   )
 };
 
-ShopStack.path = "";
+StatsStack.path = "";
 
 const tabNavigator = createBottomTabNavigator({
   HomeStack,
   ActionStack,
+  StatsStack,
   ShopStack
 });
 
