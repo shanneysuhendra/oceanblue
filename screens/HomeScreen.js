@@ -1,12 +1,12 @@
 import * as WebBrowser from "expo-web-browser";
 import React from "react";
+import { Card, Text } from "react-native-elements";
 import {
   Image,
   Platform,
   ScrollView,
   StyleSheet,
   Dimensions,
-  Text,
   TouchableOpacity,
   View
 } from "react-native";
@@ -29,20 +29,46 @@ const fractionWidth = width * 0.75;
 export default function HomeScreen() {
   return (
     <View style={styles.container}>
-      <Carousel
-        data={entries}
-        renderItem={renderItem}
-        sliderWidth={width}
-        itemWidth={fractionWidth}
-        layout={"default"}
-        inactiveSlideScale={0.95}
-        slideStyle={styles.slideStyle}
-        containerCustomStyle={styles.carousel}
-      />
+      <View style={{ height: 250 }}>
+        <Carousel
+          data={entries}
+          renderItem={renderItem}
+          sliderWidth={width}
+          itemWidth={fractionWidth}
+          layout={"default"}
+          inactiveSlideScale={0.95}
+          slideStyle={styles.slideStyle}
+          containerCustomStyle={styles.carousel}
+        />
+      </View>
+      <Card>
+        <Text style={styles.h1}> ABOUT US</Text>
+        <Text style={styles.h2}>
+          {" "}
+          Ocean Blue is a non-profit project which is based on the need of
+          change with regards to the use of non-reusable plastics in Indonesia.
+          With Indonesia being one of the top plastic polluters, we realized
+          that this problem is bigger than we realize and thus, we decided to
+          take an action now before it is too late.
+        </Text>
+      </Card>
+      <Card>
+        <Text style={styles.h1}> MISSION</Text>
+        <Text style={styles.h2}>
+          {" "}
+          Spread awareness and education on the usage of non-reusable plastic
+          not just for the sake of protecting marine life but also for all of us
+          and future generations yet to come. To improve and promote a
+          plastic-free environment, we sell eco friendly products which are
+          beneficial to both the consumer and the environment.
+        </Text>
+      </Card>
     </View>
   );
 }
-
+HomeScreen.navigationOptions = {
+  title: "Home"
+};
 function renderItem({ item }) {
   return (
     <Image
@@ -94,7 +120,8 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff"
   },
   carousel: {
-    paddingTop: 20
+    paddingTop: 20,
+    height: 200
   },
   carouselImages: {
     height: 200,
@@ -106,5 +133,12 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.5,
     shadowOffset: { width: 0, height: 10 },
     alignItems: "center"
+  },
+  h1: {
+    fontWeight: "bold",
+    fontSize: 16
+  },
+  h2: {
+    fontSize: 14
   }
 });
