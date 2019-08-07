@@ -1,6 +1,14 @@
 import * as WebBrowser from "expo-web-browser";
 import React from "react";
-import { Card, Text } from "react-native-elements";
+import {
+  Card,
+  Text,
+  Button,
+  Icon,
+  List,
+  ListItem
+} from "react-native-elements";
+import Colors from "../constants/Colors";
 import {
   Image,
   Platform,
@@ -26,9 +34,9 @@ const entries = [
 var { height, width } = Dimensions.get("window");
 const fractionWidth = width * 0.75;
 
-export default function HomeScreen() {
+export default function HomeScreen(props) {
   return (
-    <View style={styles.container}>
+    <ScrollView style={styles.container}>
       <View style={{ height: 250 }}>
         <Carousel
           data={entries}
@@ -41,10 +49,9 @@ export default function HomeScreen() {
           containerCustomStyle={styles.carousel}
         />
       </View>
-      <Card>
-        <Text style={styles.h1}> ABOUT US</Text>
+      <Card style={styles.card}>
+        <Text style={styles.h1}>ABOUT US</Text>
         <Text style={styles.h2}>
-          {" "}
           Ocean Blue is a non-profit project which is based on the need of
           change with regards to the use of non-reusable plastics in Indonesia.
           With Indonesia being one of the top plastic polluters, we realized
@@ -53,9 +60,8 @@ export default function HomeScreen() {
         </Text>
       </Card>
       <Card>
-        <Text style={styles.h1}> MISSION</Text>
+        <Text style={styles.h1}>MISSION</Text>
         <Text style={styles.h2}>
-          {" "}
           Spread awareness and education on the usage of non-reusable plastic
           not just for the sake of protecting marine life but also for all of us
           and future generations yet to come. To improve and promote a
@@ -63,12 +69,18 @@ export default function HomeScreen() {
           beneficial to both the consumer and the environment.
         </Text>
       </Card>
-    </View>
+
+      <Text style={styles.contactTitle}>
+        For more information, please contact:{" "}
+      </Text>
+    </ScrollView>
   );
 }
+
 HomeScreen.navigationOptions = {
   title: "Home"
 };
+
 function renderItem({ item }) {
   return (
     <Image
@@ -117,7 +129,7 @@ function handleHelpPress() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff"
+    backgroundColor: "#FFF"
   },
   carousel: {
     paddingTop: 20,
@@ -134,11 +146,18 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 0, height: 10 },
     alignItems: "center"
   },
+  card: {},
   h1: {
     fontWeight: "bold",
     fontSize: 16
   },
   h2: {
     fontSize: 14
+  },
+  contactTitle: {
+    fontWeight: "bold",
+    fontSize: 16,
+    paddingLeft: 15,
+    paddingTop: 30
   }
 });

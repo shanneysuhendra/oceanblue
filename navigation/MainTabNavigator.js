@@ -7,13 +7,14 @@ import {
 
 import TabBarIcon from "../components/TabBarIcon";
 import HomeScreen from "../screens/HomeScreen";
+import StatsScreen from "../screens/StatsScreen";
+import StatsFactsScreen from "../screens/StatsFactsScreen";
 import ActionScreen from "../screens/ActionScreen";
 import ShopScreen from "../screens/ShopScreen";
-import StatsScreen from "../screens/StatsScreen";
 
 const config = Platform.select({
   web: { headerMode: "screen" },
-  default: {}
+  default: "Home"
 });
 
 const HomeStack = createStackNavigator(
@@ -35,6 +36,26 @@ HomeStack.navigationOptions = {
 
 HomeStack.path = "";
 
+const StatsStack = createStackNavigator(
+  {
+    Stats: StatsScreen,
+    Statss: StatsFactsScreen
+  },
+  config
+);
+
+StatsStack.navigationOptions = {
+  tabBarLabel: "Stats",
+  tabBarIcon: ({ focused }) => (
+    <TabBarIcon
+      focused={focused}
+      name={Platform.OS === "ios" ? "ios-stats" : "md-stats"}
+    />
+  )
+};
+
+StatsStack.path = "";
+
 const ActionStack = createStackNavigator(
   {
     Action: ActionScreen
@@ -54,23 +75,6 @@ ActionStack.navigationOptions = {
 
 ActionStack.path = "";
 
-const StatsStack = createStackNavigator(
-  {
-    Stats: StatsScreen
-  },
-  config
-);
-
-StatsStack.navigationOptions = {
-  tabBarLabel: "Stats",
-  tabBarIcon: ({ focused }) => (
-    <TabBarIcon
-      focused={focused}
-      name={Platform.OS === "ios" ? "ios-stats" : "md-stats"}
-    />
-  )
-};
-
 const ShopStack = createStackNavigator(
   {
     Shop: ShopScreen
@@ -88,12 +92,12 @@ ShopStack.navigationOptions = {
   )
 };
 
-StatsStack.path = "";
+ShopStack.path = "";
 
 const tabNavigator = createBottomTabNavigator({
   HomeStack,
-  ActionStack,
   StatsStack,
+  ActionStack,
   ShopStack
 });
 
