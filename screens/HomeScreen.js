@@ -13,6 +13,7 @@ import {
   Image,
   Platform,
   ScrollView,
+  Left,
   StyleSheet,
   Dimensions,
   TouchableOpacity,
@@ -27,13 +28,12 @@ const entries = [
   { image: require("../assets/images/turtle1.jpg") },
   { image: require("../assets/images/poll2.jpg") },
   { image: require("../assets/images/turtle2.jpg") },
-  { image: require("../assets/images/poll3.jpg") },
   { image: require("../assets/images/Whale.jpg") }
 ];
 
 var { height, width } = Dimensions.get("window");
 const fractionWidth = width * 0.75;
-
+const backgroundColor = "red";
 export default function HomeScreen(props) {
   return (
     <ScrollView style={styles.container}>
@@ -49,7 +49,7 @@ export default function HomeScreen(props) {
           containerCustomStyle={styles.carousel}
         />
       </View>
-      <Card style={styles.card}>
+      <Card>
         <Text style={styles.h1}>ABOUT US</Text>
         <Text style={styles.h2}>
           Ocean Blue is a non-profit project which is based on the need of
@@ -69,16 +69,30 @@ export default function HomeScreen(props) {
           beneficial to both the consumer and the environment.
         </Text>
       </Card>
+      <Card>
+        <Text style={styles.contactTitle}>
+          For more information, please do not hesitate to text, email, or direct
+          message us via instagram:{" "}
+        </Text>
 
-      <Text style={styles.contactTitle}>
-        For more information, please contact:{" "}
-      </Text>
+        <Icon name="call" />
+        <Text>0822-2755-6793</Text>
+        <Icon name="mail-outline" />
+      </Card>
     </ScrollView>
   );
 }
 
 HomeScreen.navigationOptions = {
-  title: "Home"
+  title: "OCEAN BLUE",
+  headerStyle: {
+    backgroundColor: "#588bae"
+  },
+  headerTintColor: "#fff",
+  headerTitleStyle: {
+    fontWeight: "800",
+    fontFamily: "Verdana"
+  }
 };
 
 function renderItem({ item }) {
@@ -129,7 +143,7 @@ function handleHelpPress() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#FFF"
+    backgroundColor: "#E5E5E5"
   },
   carousel: {
     paddingTop: 20,
@@ -146,18 +160,16 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 0, height: 10 },
     alignItems: "center"
   },
-  card: {},
   h1: {
     fontWeight: "bold",
     fontSize: 16
   },
   h2: {
-    fontSize: 14
+    fontSize: 14,
+    textAlign: "justify"
   },
   contactTitle: {
     fontWeight: "bold",
-    fontSize: 16,
-    paddingLeft: 15,
-    paddingTop: 30
+    fontSize: 16
   }
 });

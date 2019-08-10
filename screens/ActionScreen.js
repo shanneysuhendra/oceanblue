@@ -2,8 +2,8 @@ import * as WebBrowser from "expo-web-browser";
 import React, { useState } from "react";
 import { Segment, Button, Text, Content, Accordion } from "native-base";
 import { Card, Icon, List, ListItem } from "react-native-elements";
-// import TabIndoAction from "./TabIndoAction";
-// import TabWorldAction from "./TabWorldAction";
+import TabIndoAction from "./TabIndoAction";
+import TabWorldAction from "./TabWorldAction";
 import Colors from "../constants/Colors";
 import {
   Image,
@@ -22,20 +22,15 @@ const fractionWidth = width * 0.75;
 
 var selectedTab = 1;
 
-const dataArray = [
-  { title: "First Element", content: "Lorem ipsum dolor sit amet" },
-  { title: "Second Element", content: "Lorem ipsum dolor sit amet" },
-  { title: "Third Element", content: "Lorem ipsum dolor sit amet" }
-];
 export default function ActionScreen(props) {
   [selectedTab, setSelectedTab] = useState(1);
   return (
     <ScrollView style={styles.container}>
-      <View style={{ height: 250 }}>
-        <Accordion dataArray={dataArray} expanded={0} />
-        {/* <Segment>
+      <View>
+        <Segment>
           <Button
             first
+            style={styles.blue}
             active={selectedTab === 1}
             onPress={() => {
               setSelectedTab(1);
@@ -53,19 +48,20 @@ export default function ActionScreen(props) {
             <Text>World</Text>
           </Button>
         </Segment>
-        <Content padder>
+        <View>
           {selectedTab == 1 && <TabIndoAction />}
           {selectedTab == 2 && <TabWorldAction />}
-        </Content>
-        <Card>
-          <Button
-            onPress={() => {
-              buttonPressed(props);
-            }}
-          >
-            <Text>"Take your own action!"</Text>
-          </Button>
-        </Card> */}
+          <Card>
+            <Button
+              style={styles.hey}
+              onPress={() => {
+                buttonPressed(props);
+              }}
+            >
+              <Text style={styles.center}>Take your own actions &nbsp;>></Text>
+            </Button>
+          </Card>
+        </View>
       </View>
     </ScrollView>
   );
@@ -74,7 +70,15 @@ function buttonPressed(props) {
   props.navigation.navigate("Actionss");
 }
 ActionScreen.navigationOptions = {
-  title: "Actions"
+  title: "ACTIONS",
+  headerStyle: {
+    backgroundColor: "#588bae"
+  },
+  headerTintColor: "#fff",
+  headerTitleStyle: {
+    fontWeight: "800",
+    fontFamily: "Verdana"
+  }
 };
 function renderItem({ item }) {
   return (
@@ -124,7 +128,7 @@ function handleHelpPress() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#FFF"
+    backgroundColor: "#E5E5E5"
   },
   carousel: {
     paddingTop: 20,
@@ -147,12 +151,23 @@ const styles = StyleSheet.create({
     fontSize: 16
   },
   h2: {
-    fontSize: 14
+    fontSize: 14,
+    textAlign: "justify"
   },
   contactTitle: {
     fontWeight: "bold",
     fontSize: 16,
     paddingLeft: 15,
     paddingTop: 30
+  },
+  center: {
+    paddingLeft: 73
+  },
+  blue: {
+    borderColor: "#588bae"
+  },
+  hey: {
+    borderColor: "#588bae",
+    backgroundColor: "#588bae"
   }
 });

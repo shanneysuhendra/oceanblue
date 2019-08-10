@@ -1,14 +1,20 @@
 import React from "react";
-import { View, Text, Button } from "react-native";
+import { Card } from "react-native-elements";
+import { View, Text, StyleSheet } from "react-native";
+import { List, ListItem } from "native-base";
+import Colors from "../constants/Colors";
+import { ExpoConfigView } from "@expo/samples";
 
-export default function StatsFactsScreen(props) {
+export default function ActionOwnScreen() {
   return (
-    <View>
-      <Text style={styles.h0}>
-        Remember, you don't have to be in an organization to create a change.
-        Here are some tips that you can implement on your daily routine that
-        could help make an impact.
-      </Text>
+    <View style={styles.container}>
+      <Card>
+        <Text style={styles.h0}>
+          Remember, you don't have to be in an organization to create a change.
+          Here are some tips that you can implement on your daily routine that
+          could help make an impact.
+        </Text>
+      </Card>
       <Text style={styles.h1}>REDUCE</Text>
       <Text style={styles.h2}>Make it a habit to say no to plastic.</Text>
       <Text style={styles.h1}>REUCE</Text>
@@ -34,23 +40,36 @@ export default function StatsFactsScreen(props) {
     </View>
   );
 }
-HomeScreen.navigationOptions = {
-  title: "Take Your Own Actions"
+ActionOwnScreen.navigationOptions = {
+  title: "SELF ACTIONS",
+  headerStyle: {
+    backgroundColor: "#588bae"
+  },
+  headerTintColor: "#fff",
+  headerTitleStyle: {
+    fontWeight: "800",
+    fontFamily: "Verdana"
+  }
 };
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#AFDBF5"
+    backgroundColor: "#E5E5E5"
   },
   h0: {
-    fontSize: 15
+    fontSize: 15,
+    paddingLeft: 15,
+    paddingRight: 15
   },
   h1: {
     fontWeight: "bold",
-    fontSize: 16
+    fontSize: 16,
+    paddingLeft: 15,
+    paddingTop: 20
   },
   h2: {
-    fontSize: 14
+    fontSize: 14,
+    paddingLeft: 15
   }
 });

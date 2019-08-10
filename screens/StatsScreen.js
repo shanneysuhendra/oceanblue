@@ -1,7 +1,18 @@
 import * as WebBrowser from "expo-web-browser";
 import React, { useState } from "react";
-import { Segment, Button, Text, Content } from "native-base";
-import { Card, Icon, List, ListItem } from "react-native-elements";
+import {
+  Segment,
+  Button,
+  Text,
+  Content,
+  Container,
+  Header,
+  Tab,
+  Tabs,
+  TabHeading,
+  Icon
+} from "native-base";
+import { Card, List, ListItem } from "react-native-elements";
 import TabIndoStats from "./TabIndoStats";
 import TabWorldStats from "./TabWorldStats";
 import Colors from "../constants/Colors";
@@ -20,54 +31,42 @@ import { MonoText } from "../components/StyledText";
 var { height, width } = Dimensions.get("window");
 const fractionWidth = width * 0.75;
 
-var selectedTab = 1;
-
 export default function StatsScreen(props) {
-  [selectedTab, setSelectedTab] = useState(1);
   return (
     <ScrollView style={styles.container}>
-      <View style={{ height: 250 }}>
-        <Segment>
+      <View>
+        <Container>
+          <Tabs>
+            <Tab
+              heading={
+                <TabHeading>
+                  <Text>INDONESIA</Text>
+                </TabHeading>
+              }
+            >
+              <TabIndoStats />
+            </Tab>
+            <Tab
+              heading={
+                <TabHeading>
+                  <Text>WORLD</Text>
+                </TabHeading>
+              }
+            >
+              <TabWorldStats />
+            </Tab>
+          </Tabs>
+        </Container>
+        <Card style={styles.heyy}>
           <Button
-            first
-            active={selectedTab === 1}
-            onPress={() => {
-              setSelectedTab(1);
-            }}
-          >
-            <Text>Indonesia</Text>
-          </Button>
-          <Button
-            last
-            active={selectedTab === 2}
-            onPress={() => {
-              setSelectedTab(2);
-            }}
-          >
-            <Text>World</Text>
-          </Button>
-        </Segment>
-        <Content padder>
-          {selectedTab == 1 && <TabIndoStats />}
-          {selectedTab == 2 && <TabWorldStats />}
-        </Content>
-        {/* <Carousel
-          data={entries}
-          renderItem={renderItem}
-          sliderWidth={width}
-          itemWidth={fractionWidth}
-          layout={"default"}
-          inactiveSlideScale={0.95}
-          slideStyle={styles.slideStyle}
-          containerCustomStyle={styles.carousel}
-        /> */}
-        <Card>
-          <Button
+            style={styles.hey}
             onPress={() => {
               buttonPressed(props);
             }}
           >
-            <Text>"Learn facts related to plastic!"</Text>
+            <Text style={styles.center}>
+              Learn facts related to plastic &nbsp;>>
+            </Text>
           </Button>
         </Card>
       </View>
@@ -78,7 +77,15 @@ function buttonPressed(props) {
   props.navigation.navigate("Statss");
 }
 StatsScreen.navigationOptions = {
-  title: "Statistics"
+  title: "STATISTICS",
+  headerStyle: {
+    backgroundColor: "#588bae"
+  },
+  headerTintColor: "#fff",
+  headerTitleStyle: {
+    fontWeight: "800",
+    fontFamily: "Verdana"
+  }
 };
 function renderItem({ item }) {
   return (
@@ -128,7 +135,7 @@ function handleHelpPress() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#FFF"
+    backgroundColor: "#E5E5E5"
   },
   carousel: {
     paddingTop: 20,
@@ -145,7 +152,6 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 0, height: 10 },
     alignItems: "center"
   },
-  card: {},
   h1: {
     fontWeight: "bold",
     fontSize: 16
@@ -158,5 +164,15 @@ const styles = StyleSheet.create({
     fontSize: 16,
     paddingLeft: 15,
     paddingTop: 30
+  },
+  center: {
+    paddingLeft: 45
+  },
+  hey: {
+    borderColor: "#588bae",
+    backgroundColor: "#588bae"
+  },
+  heyy: {
+    backgroundColor: "transparent"
   }
 });

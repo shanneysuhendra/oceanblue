@@ -10,6 +10,7 @@ import HomeScreen from "../screens/HomeScreen";
 import StatsScreen from "../screens/StatsScreen";
 import StatsFactsScreen from "../screens/StatsFactsScreen";
 import ActionScreen from "../screens/ActionScreen";
+import ActionOwnScreen from "../screens/ActionOwnScreen";
 import ShopScreen from "../screens/ShopScreen";
 
 const config = Platform.select({
@@ -58,7 +59,8 @@ StatsStack.path = "";
 
 const ActionStack = createStackNavigator(
   {
-    Action: ActionScreen
+    Action: ActionScreen,
+    Actionss: ActionOwnScreen
   },
   config
 );
@@ -94,12 +96,19 @@ ShopStack.navigationOptions = {
 
 ShopStack.path = "";
 
-const tabNavigator = createBottomTabNavigator({
-  HomeStack,
-  StatsStack,
-  ActionStack,
-  ShopStack
-});
+const tabNavigator = createBottomTabNavigator(
+  {
+    HomeStack,
+    StatsStack,
+    ActionStack,
+    ShopStack
+  },
+  {
+    tabBarOptions: {
+      activeTintColor: "#588bae"
+    }
+  }
+);
 
 tabNavigator.path = "";
 
